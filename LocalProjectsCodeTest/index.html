@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="keywords" content="Local Projects, Question Generator">
+<title>Code test for Local Projects</title>
+<link href="css/main.css" rel="stylesheet" type="text/css">
+
+<!--<link href="css/contactForm.css" rel="stylesheet" type="text/css">-->
+
+<script>var __adobewebfontsappname__="dreamweaver"</script>
+<script src="http://use.edgefonts.net/source-sans-pro:n2:default.js" type="text/javascript"></script>
+<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+	google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Categories', 'Data Visualization'],
+          ['Income Tax',     11],
+          ['Public Health',      2],
+          ['Entrepreneurship',  2],
+          ['Community Art', 2],
+          ['Immigration',    7]
+        ]);
+
+        var options = {
+          title: 'Statistic Results in your area',
+          is3D: true,
+		  legend: 'none',
+          pieSliceText: 'label',
+          slices: {  1: {offset: 0.2},
+                    2: {offset: 0.3},
+                    14: {offset: 0.4},
+                    5: {offset: 0.5},
+          },
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+        chart.draw(data, options);
+      }
+</script>
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<!-- Data Display-->
+<div id="piechart_3d" style="width: 900px; height: 500px;"></div>
+<!-- Main Container -->
+<div class="container">
+ 
+  <section id="data">
+  <div>
+  		<!-- Display the usage data here-->
+  </div>
+  </section>
+  <!-- Question Section -->
+  <section class="question" id="about">
+    <h2 class="hidden">Please answer the following Question</h2>
+<!--TODO Align Center-->
+    <form id="question" action="php/ProcessQuestion.php" method="post">
+    <script>
+	// Assign handlers immediately after making the request,
+	// and remember the jqxhr object for this r	var jqxhr = $.get( "php/RetrieveQuestion.php", function(data) {
+	  alert( "success " + data );
+	});
+	</script>
+    <h3>Insert Question Here</h3>   
+    <fieldset>
+      <input type="radio" name="answer" value="yes" required>Yes<br>
+      <input type="radio" name="answer" value="no">No<br>
+    </fieldset>
+    <input type="submit" name="formSubmit" value="Submit">
+  </form>
+    <!-- call javascript to generate question form (Yes No button Submit)-->
+  </section>
+  <!-- Footer Section -->
+  <section id="suggestion"> 
+  <form id="contact" action="" method="post">
+    <h3>What is your suggestion?</h3>
+    <fieldset>
+      <input class="half" type="text" placeholder="What's your name" tabindex="1" required autofocus>
+      <input class="half" type="text" placeholder="What question would you like asked?" tabindex="2" required>
+    </fieldset>
+    <fieldset>
+      <input class="full" placeholder="Your Email Address" type="email" tabindex="3" required>
+    </fieldset>    
+  </form>
+  </section>
+
+
+  <!-- Copyrights Section -->
+  <div class="copyright">&copy;2016 - <strong>Evan McCall</strong></div>
+</div>
+
+<video id="player" controls autoplay></video>
+<button id="capture">Capture</button>
+<canvas id="snapshot" width="320" height="240"></canvas>
+<script>
+  var player = document.getElementById('player'); 
+  var snapshotCanvas = document.getElementById('snapshot');
+  var captureButton = document.getElementById('capture');
+
+  var handleSuccess = function(stream) {
+    // Attach the video stream to the video element and autoplay.
+    player.src = URL.createObjectURL(stream);
+  };
+
+  captureButton.addEventListener('click', function() {
+    var context = snapshot.getContext('2d');
+    // Draw the video frame to the canvas.
+    context.drawImage(player, 0, 0, snapshotCanvas.width, snapshotCanvas.height);
+  });
+
+  navigator.mediaDevices.getUserMedia({ audio: false, video: true })
+      .then(handleSuccess);
+</script>
+</body>
+</html>
