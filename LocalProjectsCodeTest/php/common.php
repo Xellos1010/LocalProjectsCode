@@ -1,12 +1,34 @@
 <?php
 
-	require('../FinalPHP/config.php');
+	require('config.php');
 
 	// Use SQLite file if it exists, otherwise connect to database.
 	if (file_exists('scoreboard.db')) {
 		$db = new PDO('sqlite:scoreboard.db');
 	} else {
-		$db = new PDO(DB_CONN, DB_USER, DB_PASS);
+		//$db = new PDO(DB_CONN, DB_USER, DB_PASS);
+		$mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB);
+
+		/*
+		 * This is the "official" OO way to do it,
+		 * BUT $connect_error was broken until PHP 5.2.9 and 5.3.0.
+		 */
+		if ($mysqli->connect_error) {
+			die('Connect Error (' . $mysqli->connect_errno . ') '
+					. $mysqli->connect_error);
+		}
+
+		/*
+		 * Use this instead of $connect_error if you need to ensure
+		 * compatibility with PHP versions prior to 5.2.9 and 5.3.0.
+		 */
+		if (mysqli_connect_error()) {
+			die('Connect Error (' . mysqli_connect_errno() . ') '
+					. mysqli_connect_error());
+		}
+
+		//echo 'Success... ' . $mysqli->host_info . "\n";
+
 	}
    
     function get_row_column_info($table, $key, $value,$returncell){
@@ -35,9 +57,6 @@
 		return null;
 	}
 
-    function GetAllQuestions(){
-        return get_all_rows(QUESTIONS_TABLE)
-    }
 
     function get_all_rows($table) {
 		global $db;
@@ -52,7 +71,7 @@
 		return null;
 	}
 
-    function get_all_rows($table, $key, $value) {
+    function get_all_rows_with_key($table, $key, $value) {
 		global $db;
 		
 		$stmt = $db->prepare('SELECT * FROM '.$table.' WHERE '.$key.'=?');

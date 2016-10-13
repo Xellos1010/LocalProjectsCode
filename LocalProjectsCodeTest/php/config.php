@@ -3,12 +3,13 @@
 	define('CACHE_FILE', 'scores.plist');
 	define('CACHE_AGE_MAX', 30);
 	
-	define('DB_CONN','mysql:host=web440.webfaction.com:3306;dbname=localprojects');
-	define('DB_USER','localproject');
-	define('DB_PASS','1234qwer');
-	
-	define('QUESTIONS_TABLE', 'Questions');
-	define('STATISTICS_TABLE', 'Categories');
+	//define('DB_CONN','mysql:dbname=localprojects;host=localhost');
+	define('DB_HOST','localhost');
+	define('DB_USER','root');
+	define('DB_PASS','');
+	define('DB','localprojects');
+	define('QUESTIONS_TABLE', 'questions');
+	define('STATISTICS_TABLE', 'categories');
 	
 	// On submission, map the 'v' parameter to an integer
 	$VERSIONS = array(
@@ -19,9 +20,5 @@
 	$HASHSALTS = array(
 					   1 => '1337',
 					   );
-	
-	// map game ID ('g' parameter) to a table
-	//$POINT_TABLES = array(
-//						  1 => 'sb_scores_FarkleTower',
-						  //);
+
 ?>
