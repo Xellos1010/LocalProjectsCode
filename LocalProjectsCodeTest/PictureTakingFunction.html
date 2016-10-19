@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="keywords" content="Local Projects, Question Generator">
+<title>Code test for Local Projects</title>
+<link href="css/main.css" rel="stylesheet" type="text/css">
+
+<!--<link href="css/contactForm.css" rel="stylesheet" type="text/css">-->
+
+<script>var __adobewebfontsappname__="dreamweaver"</script>
+<script src="http://use.edgefonts.net/source-sans-pro:n2:default.js" type="text/javascript"></script>
+<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript" src="js/takeSnapshot.js"></script>
+<script type="text/javascript">
+	google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Categories', 'Data Visualization'],
+          ['Income Tax',     11],
+          ['Public Health',      2],
+          ['Entrepreneurship',  2],
+          ['Community Art', 2],
+          ['Immigration',    7]
+        ]);
+
+        var options = {
+          title: 'Statistic Results in your area',
+          is3D: true,
+		  legend: 'none',
+          pieSliceText: 'label',
+          slices: {  1: {offset: 0.2},
+                    2: {offset: 0.3},
+                    14: {offset: 0.4},
+                    5: {offset: 0.5},
+          },
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+        chart.draw(data, options);
+      }
+</script>
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<!-- Data Display-->
+<div id="piechart_3d" style="width: 900px; height: 500px;"></div>
+<!-- Main Container -->
+<div class="container">
+ 
+  <section id="data">
+  <div>
+  		<!-- Display the usage data here-->
+  </div>
+  </section>
+
+  <h1>Take your picture to give yourself credit :)</h1>
+
+  <div id="takephoto">
+<!--Turn off video once picture us taken-->
+    <div id="video">
+      <video id="player" controls autoplay></video>
+      <button id="capture">Capture</button>
+    </div>
+    <div id="snapshotdiv">
+      <canvas id="snapshot" width="320" height="240"></canvas>
+    </div>
+  </div>
+
+  <!-- Footer Section -->
+  <!--
+  <section id="suggestion">
+  <form id="contact" action="" method="post">
+    <h3>What is your suggestion?</h3>
+    <fieldset>
+      <input class="half" type="text" placeholder="What's your name" tabindex="1" required autofocus>
+      <input class="half" type="text" placeholder="What question would you like asked?" tabindex="2" required>
+    </fieldset>
+    <fieldset>
+      <input class="full" placeholder="Your Email Address" type="email" tabindex="3" required>
+    </fieldset>    
+  </form>
+  </section>
+-->
+
+  <!-- Copyrights Section -->
+  <div class="copyright">&copy;2016 - <strong>Evan McCall</strong></div>
+</div>
+
+</body>
+</html>
